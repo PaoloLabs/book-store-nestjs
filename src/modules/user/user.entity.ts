@@ -1,4 +1,15 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinTable,
+  ManyToMany,
+  JoinColumn,
+} from 'typeorm';
+import { UserDetails } from './user.details.entity';
+import { Role } from '../role/role.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -13,6 +24,21 @@ export class User extends BaseEntity {
 
   @Column({ type: 'varchar', nullable: false })
   password: string;
+
+  @OneToOne(type => UserDetails, {
+    cascade: true,
+    nullable: false,
+    eager: true,
+  })
+  @JoinTable({ name: 'detail_id' })
+  details: UserDetails;
+
+  @ManyToMany(
+    type => Role,
+    role => role.users,
+  )
+  @JoinTable({ name: 'user_roles' })
+  roles: Role[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
