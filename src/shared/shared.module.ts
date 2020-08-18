@@ -3,6 +3,6 @@ import { MapperService } from './mapper.service';
 
 @Module({
   providers: [MapperService],
-  imports: [MapperService],
+  exports: [MapperService],
 })
 export class SharedModule {}

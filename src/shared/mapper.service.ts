@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypeMapper } from 'ts-mapper';
-import { User } from 'src/modules/user/user.entity';
-import { UserDto } from 'src/modules/user/dto/user.dto';
+import { User } from '../modules/user/user.entity';
+import { UserDto } from '../modules/user/dto/user.dto';
 
 @Injectable()
 export class MapperService extends TypeMapper {
