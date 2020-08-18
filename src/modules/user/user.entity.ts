@@ -30,7 +30,7 @@ export class User extends BaseEntity {
     nullable: false,
     eager: true,
   })
-  @JoinTable({ name: 'detail_id' })
+  @JoinColumn({ name: 'detail_id' })
   details: UserDetails;
 
   @ManyToMany(
